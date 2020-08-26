@@ -1,7 +1,7 @@
 unix:TEMPLATE     = lib
 win32:TEMPLATE    = vclib
 
-QT += widgets
+QT += widgets printsupport
 
 HEADERS     += commonqt.h
 SOURCES     += commonqt.cpp

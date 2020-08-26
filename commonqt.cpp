@@ -9,6 +9,7 @@
 #include <QtGui>
 #include "commonqt.h"
 #include <QTextEdit>
+#include <QPrinter>
 #include <private/qmetaobjectbuilder_p.h>
 
 // #define DEBUG 1
@@ -457,7 +458,7 @@ sw_qlist_string_append(void *ptr, char *str)
   }
 
 DEFINE_QLIST_SCALAR_MARSHALLER(int, int)
-DEFINE_QLIST_SCALAR_MARSHALLER(QPagedPaintDevice::PageSize,papersize)
+DEFINE_QLIST_SCALAR_MARSHALLER(QPrinter::PageSize,papersize)
 DEFINE_QLIST_SCALAR_MARSHALLER(QVariant, qvariant)
 DEFINE_QLIST_SCALAR_MARSHALLER(QByteArray, qbytearray)
 DEFINE_QLIST_SCALAR_MARSHALLER(QModelIndex, qmodelindex)
