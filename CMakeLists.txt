@@ -33,8 +33,4 @@ add_library(commonqt SHARED commonqt.cpp)
 
 target_link_libraries(commonqt smokeqtcore smokebase Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::PrintSupport)
 
-install( TARGETS commonqt RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin) 
-
-			
-			
-	
+install( TARGETS commonqt RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
