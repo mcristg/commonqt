@@ -64,6 +64,17 @@ Change unix:INCLUDEPATH with your Qt5 path.
 qmake "unix:INCLUDEPATH+=/your path/Qt/5.15.0/gcc_64/include/QtCore/5.15.0 /your path/Qt/5.15.0/gcc_64/include/QtCore/5.15.0/QtCore" \
        commonqt.pro
 
+or
+
+mkdir build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local \
+      -DCMAKE_PREFIX_PATH=~/Qt/5.15.0/gcc_64 \
+      -DSMOKE_LIB=/usr/local \
+      -DQt5_DIR=~/Qt/5.15.0/gcc_64/lib/cmake/Qt5 \
+      -G "Unix Makefiles" ../
+
 make
 sudo make install
 

@@ -64,6 +64,18 @@ Change unix:INCLUDEPATH with your Qt5 path.
 qmake "unix:INCLUDEPATH+=/your path/Qt/5.15.0/gcc_64/include/QtCore/5.15.0 /your path/Qt/5.15.0/gcc_64/include/QtCore/5.15.0/QtCore" \
        commonqt.pro
 
+or
+
+mkdir build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local \
+      -DCMAKE_PREFIX_PATH=~/Qt/5.15.0/gcc_64 \
+      -DSMOKE_LIB=/usr/local \
+      -DQt5_DIR=~/Qt/5.15.0/gcc_64/lib/cmake/Qt5 \
+      -G "Unix Makefiles" ../
+
+
 make
 sudo make install
 
@@ -130,6 +142,8 @@ cd ..\..\
 
 Always use your Qt5 path where required:
 
+git clone -b clang https://github.com/chrisburel/smokegen
+
 copy smokegen-llvm-10.patch to smokegen dir from commonqt/Instructions.
 cd smokegen
 git apply -p1 < smokegen-llvm-10.patch
@@ -179,9 +193,22 @@ Change win32:INCLUDEPATH with your Qt5 path.
 
 qmake "win32:INCLUDEPATH+=C:/dev/Qt/5.15.0/msvc2019_64/include/QtCore/5.15.0 C:/dev/Qt/5.15.0/msvc2019_64/include/QtCore/5.15.0/QtCore c:/dev/smokeqt-lib/include" ^
       "QMAKE_LIBDIR+=c:/dev/smokeqt-lib/lib" "DLLDESTDIR=c:/dev/smokeqt-lib/bin" commonqt.pro
-	  
 
-MsBuild commonqt.vcxproj /t:Build /p:Configuration=Release	
+MsBuild commonqt.vcxproj /t:Build /p:Configuration=Release
+
+or
+
+mkdir build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=C:/dev/smokeqt-lib ^
+      -DCMAKE_PREFIX_PATH=C:/dev/Qt/5.15.0/msvc2019_64 ^
+      -DSMOKE_LIB=c:/dev/smokeqt-lib ^
+      -DQt5_DIR="C:/dev/Qt/5.15.0/msvc2019_64/lib/cmake/Qt5" ^
+      -G "Visual Studio 16 2019" -A x64 -Thost=x64 ../	
+
+MsBuild commonqt.sln /t:Build /p:Configuration=Release
+MsBuild INSTALL.vcxproj /t:Build /p:Configuration=Release
 
 close win 10 terminal (cmd) and add your path\smokeqt-lib\bin path to your system
 
